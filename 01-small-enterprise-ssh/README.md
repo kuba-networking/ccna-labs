@@ -186,6 +186,17 @@ To verify the network setup, the following tests were performed successfully:
 * **SSH Administrator Database (SW1):** Username `admin` / Secret authentication
 * **Privileged EXEC Mode:** Secured with `enable secret` (MD5/SHA cryptographic hashing)
 * **Line Access (Console & VTY):** Protected with password authentication and `service password-encryption`
+---
+---
+
+## 🧪 Testing Credentials (For Packet Tracer Simulation)
+
+If you download and test the `SSH Management.configurations.pka` file locally, use these lab credentials:
+
+* **Privileged EXEC Password (`enable`):** `Ciscoenpa55`
+* **Console / VTY Line Password:** `Ciscolinepa55`
+* **SSH Administrator (SW1):** Username `admin` / Password `Ciscoadmin123`
+.  
 
 
  
