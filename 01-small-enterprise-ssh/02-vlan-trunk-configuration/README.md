@@ -128,7 +128,7 @@ To enable centralized out-of-band switch management, Switch Virtual Interfaces (
 
 The repository contains all documentation, CLI verification logs, and the complete Cisco Packet Tracer network topology file:
 
-- **Topology File:** `VLAN, TRUNK ,DTP,NATIVE CONFIGURATION git.pkt` (Contains full L2 configurations, VLANs, 802.1Q trunking, Native VLAN 99 migration, and active SVI interfaces)
+- **Topology File:** `VLAN, TRUNK ,DTP,NATIVE CONFIGURATION git.pka` (Contains full L2 configurations, VLANs, 802.1Q trunking, Native VLAN 99 migration, and active SVI interfaces)
 - **Documentation:** `README.md` (Detailed step-by-step implementation guide with CLI logs and screenshots)
 
 ### Verification Summary
