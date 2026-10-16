@@ -83,3 +83,54 @@ To verify that the configuration operates as intended, basic end-to-end connecti
 
 <img width="406" height="225" alt="image" src="https://github.com/user-attachments/assets/b612c436-a159-4d39-b9be-0ddde581a30c" />
 
+---
+---
+
+### 5. Trunking & Dynamic Trunking Protocol (DTP)
+To allow multi-VLAN traffic to travel between switches (**S1**, **S2**, and **S3**), 802.1Q trunking was configured on the inter-switch links with  Native VLAN mapping:
+
+- **Trunk Mode:** Interface `GigabitEthernet 0/1` on switch **S2** was explicitly configured in static trunk mode (`switchport mode trunk`).
+- **Native VLAN Hardening:** The default Native VLAN was changed from VLAN 1 to **VLAN 99** (`switchport trunk native vlan 99`) to align with the management domain and enhance security against VLAN hopping attacks.
+- **VLAN Propagation:** Enforced 802.1Q encapsulation carrying all active VLANs (10, 20, 30, 99, 150) across the trunk link.
+
+Verification using `show interfaces trunk` on switch **S2** confirms active trunk status, 802.1Q encapsulation, and Native VLAN 99 assignment:
+
+<img width="572" height="393" alt="image" src="https://github.com/user-attachments/assets/2eab2caf-7362-473d-b5c3-5abc45efd4da" />
+
+---
+---
+
+---
+
+### 6. Native VLAN Migration & Hardening
+To eliminate security risks associated with the default configuration, the native VLAN was migrated away from VLAN 1 across all inter-switch trunk links:
+- **Default Risk Mitigation:** VLAN 1 is well-known and targeted in VLAN hopping attacks. Remapping untagged traffic prevents malicious frame injection.
+- **Dedicated VLAN Assignment:** Reassigned the native VLAN explicitly to **VLAN 99** (Management & Native) across trunk interfaces.
+
+Verification using `show interfaces trunk` on switch **S1** confirms that multiple trunk ports (`Gig0/1` and `Gig0/2`) are active with 802.1Q encapsulation and correctly mapped to Native VLAN 99:
+
+<img width="533" height="255" alt="image" src="https://github.com/user-attachments/assets/d6e3bc48-8b46-488d-aa75-5484dc17b1a9" />
+
+---
+---
+
+### 7. Management SVI Deployment
+To enable centralized out-of-band switch management, Switch Virtual Interfaces (SVI) were configured and verified on **VLAN 99** across the infrastructure:
+- **Purpose:** Provides secure remote access (SSH/Telnet) to the management plane of each switch.
+- **IP Addressing Scheme:** Configured within the designated management subnet (`172.17.99.0/24`).
+
+<img width="686" height="573" alt="image" src="https://github.com/user-attachments/assets/72bd43e5-c541-433b-8d79-fbabe06e118a" />
+
+---
+---
+
+## Project Deliverables & Repository Structure
+
+The repository contains all documentation, CLI verification logs, and the complete Cisco Packet Tracer network topology file:
+
+- **Topology File:** `VLAN, TRUNK ,DTP,NATIVE CONFIGURATION git.pkt` (Contains full L2 configurations, VLANs, 802.1Q trunking, Native VLAN 99 migration, and active SVI interfaces)
+- **Documentation:** `README.md` (Detailed step-by-step implementation guide with CLI logs and screenshots)
+
+### Verification Summary
+All configured features—including intra-VLAN traffic segmentation, 802.1Q trunking over dynamic links, Native VLAN hardening, and SVI management access—have been fully tested and validated in Cisco Packet Tracer.
+
